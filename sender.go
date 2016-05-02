@@ -74,10 +74,6 @@ func (s *Sender) SendNoRetry(msg *Message) (*Response, error) {
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("%d error: %s", resp.StatusCode, resp.Status)
-	}
-
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
